@@ -1079,7 +1079,10 @@ grabkeys(void)
 void
 incnmaster(const Arg *arg)
 {
-	selmon->nmaster = MAX(selmon->nmaster + arg->i, 0);
+	int n;
+	Client *c;
+	for (n = 0, c = nexttiled(selmon->clients); c; c = nexttiled(c->next), n++);
+	selmon->nmaster = MIN(MAX(selmon->nmaster + arg->i, 0),n);
 	arrange(selmon);
 }
 

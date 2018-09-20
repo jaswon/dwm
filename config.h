@@ -60,8 +60,11 @@ static void tagview (const Arg *arg);
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "termite", NULL };
-static const char *blupcmd[]  = { "blt", "+", NULL };
-static const char *bldncmd[]  = { "blt", "-", NULL };
+static const char *bltupcmd[]  = { "blt", "+", NULL };
+static const char *bltdncmd[]  = { "blt", "-", NULL };
+static const char *volupcmd[]  = { "vol", "+", NULL };
+static const char *voldncmd[]  = { "vol", "-", NULL };
+static const char *volmtcmd[]  = { "vol", "%", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -98,8 +101,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0, 0x1008ff02,   spawn, {.v = blupcmd} },
-	{ 0, 0x1008ff03, spawn, {.v = bldncmd} },
+	{ 0, 0x1008ff02, spawn, {.v = bltupcmd} }, // XF86MonBrightnessUp
+	{ 0, 0x1008ff03, spawn, {.v = bltdncmd} }, // XF86MonBrightnessDown
+	{ 0, 0x1008ff13, spawn, {.v = volupcmd} }, // XF86AudioRaiseVolume
+	{ 0, 0x1008ff11, spawn, {.v = voldncmd} }, // XF86AudioLowerVolume
+	{ 0, 0x1008ff12, spawn, {.v = volmtcmd} }, // XF86AudioMute
 };
 
 /* button definitions */

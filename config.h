@@ -65,6 +65,8 @@ static const char *bltdncmd[]  = { "blt", "-", NULL };
 static const char *volupcmd[]  = { "vol", "+", NULL };
 static const char *voldncmd[]  = { "vol", "-", NULL };
 static const char *volmtcmd[]  = { "vol", "%", NULL };
+static const char *scrot[]  = { "sst", NULL };
+static const char *sscrot[]  = { "sst", "s", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -106,6 +108,8 @@ static Key keys[] = {
 	{ 0, 0x1008ff13, spawn, {.v = volupcmd} }, // XF86AudioRaiseVolume
 	{ 0, 0x1008ff11, spawn, {.v = voldncmd} }, // XF86AudioLowerVolume
 	{ 0, 0x1008ff12, spawn, {.v = volmtcmd} }, // XF86AudioMute
+	{ 0     , XK_Print, spawn, {.v = scrot}  }, // Print
+	{ MODKEY, XK_Print, spawn, {.v = sscrot} }, // Print
 };
 
 /* button definitions */

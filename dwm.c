@@ -714,10 +714,10 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 	x = 0;
-	w = TEXTW("o");
+	w = TEXTW("\u25a0");
 	for (i = 0; i < LENGTH(tags); i++) {
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, occ & 1 << i ? "O" : "o", urg & 1 << i);
+		drw_text(drw, x, 0, w, bh, lrpad / 2, occ & 1 << i ? "\u25a0" : "\u25a1", urg & 1 << i);
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);

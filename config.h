@@ -1,12 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int barsize   = 14;       /* size of bar */
+static const unsigned int barsize   = 16;       /* size of bar */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "curie-12", "Wuncon Siji:pixelsize=11;1" };
+static const char *fonts[]          = { "Wuncon Siji-10", "Input-10" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -22,8 +22,8 @@ static const char *colors[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
-static const char *occupied_tag = "\u26ab";
-static const char *unoccupied_tag = "\u26aa";
+static const char *occupied_tag = "\ue098";
+static const char *unoccupied_tag = "\ue0f6";
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -60,15 +60,18 @@ static void tagview (const Arg *arg);
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[]  = { "rofi", "-show", "drun", NULL };
+static const char *termcmd[]   = { "st", NULL };
 static const char *bltupcmd[]  = { "blt", "+", NULL };
 static const char *bltdncmd[]  = { "blt", "-", NULL };
 static const char *volupcmd[]  = { "vol", "+", NULL };
 static const char *voldncmd[]  = { "vol", "-", NULL };
 static const char *volmtcmd[]  = { "vol", "%", NULL };
-static const char *scrot[]  = { "sst", NULL };
-static const char *sscrot[]  = { "sst", "s", NULL };
+static const char *scrot[]     = { "sst", NULL };
+static const char *sscrot[]    = { "sst", "s", NULL };
+static const char *mediaplay[] = { "playerctl", "play-pause", NULL };
+static const char *medianext[] = { "playerctl", "next", NULL };
+static const char *mediaprev[] = { "playerctl", "previous", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -103,9 +106,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0, 0x1008ff02, spawn, {.v = bltupcmd} }, // XF86MonBrightnessUp
 	{ 0, 0x1008ff03, spawn, {.v = bltdncmd} }, // XF86MonBrightnessDown
-	{ 0, 0x1008ff13, spawn, {.v = volupcmd} }, // XF86AudioRaiseVolume
 	{ 0, 0x1008ff11, spawn, {.v = voldncmd} }, // XF86AudioLowerVolume
 	{ 0, 0x1008ff12, spawn, {.v = volmtcmd} }, // XF86AudioMute
+	{ 0, 0x1008ff13, spawn, {.v = volupcmd} }, // XF86AudioRaiseVolume
+	{ 0, 0x1008ff14, spawn, {.v = mediaplay} }, // XF86AudioPlay
+	{ 0, 0x1008ff16, spawn, {.v = mediaprev} }, // XF86AudioPrev
+	{ 0, 0x1008ff17, spawn, {.v = medianext} }, // XF86AudioNext
 	{ 0     , XK_Print, spawn, {.v = scrot}  }, // Print
 	{ MODKEY, XK_Print, spawn, {.v = sscrot} }, // Print
 };

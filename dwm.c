@@ -416,7 +416,7 @@ attachstack(Client *c)
 void
 buttonpress(XEvent *e)
 {
-	unsigned int i, x, click;
+	unsigned int i, x, click, occ = 0;
 	Arg arg = {0};
 	Client *c;
 	Monitor *m;
@@ -429,10 +429,11 @@ buttonpress(XEvent *e)
 		selmon = m;
 		focus(NULL);
 	}
+	for (c = m->clients; c; c = c->next) occ |= c->tags;
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
 		do
-			x += TEXTW(tags[i]);
+			x += TEXTW(occ & 1 << i ? occupied_tag : unoccupied_tag);
 		while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
 			click = ClkTagBar;

@@ -70,6 +70,7 @@ static const char *voldncmd[]  = { "vol", "-", NULL };
 static const char *volmtcmd[]  = { "vol", "%", NULL };
 static const char *scrot[]     = { "sst", NULL };
 static const char *sscrot[]    = { "sst", "s", NULL };
+static const char *slock[]     = { "slock" };
 static const char *mediaplay[] = { "playerctl", "play-pause", NULL };
 static const char *medianext[] = { "playerctl", "next", NULL };
 static const char *mediaprev[] = { "playerctl", "previous", NULL };
@@ -115,6 +116,7 @@ static Key keys[] = {
 	{ 0, 0x1008ff17, spawn, {.v = medianext} }, // XF86AudioNext
 	{ 0     , XK_Print, spawn, {.v = scrot}  }, // Print
 	{ MODKEY, XK_Print, spawn, {.v = sscrot} }, // Print
+	{ MODKEY|ShiftMask, XK_x, spawn, {.v = slock } }, // lock screen (slock)
 };
 
 /* button definitions */
